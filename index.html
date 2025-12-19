@@ -14,6 +14,46 @@
     <title>Navbar Replica</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script>
+        const slider = document.getElementById("#slider");
+        const next = document.getElementById("#next");
+        const prev = document.getElementById("#prev");
+
+        const cards = slider.querySelectorAll(".card");
+        const gap = parseInt(getComputedStyle(slider).gap) || 0;
+
+        const cardWidth = cards[0].offsetWidth + gap;
+
+        // რამდენ ქარდზე გადავიდეს ერთ დაჭერაზე
+        const STEP = cardWidth * 2; // 2 ქარდი ერთ კლიკზე
+
+        let position = 0;
+
+        function getMaxScroll() {
+            return slider.scrollWidth - slider.parentElement.offsetWidth;
+        }
+
+        next.addEventListener("click", () => {
+            position += STEP;
+            const max = getMaxScroll();
+            if (position > max) position = max;
+            slider.style.transform = `translateX(-${position}px)`;
+        });
+
+        prev.addEventListener("click", () => {
+            position -= STEP;
+            if (position < 0) position = 0;
+            slider.style.transform = `translateX(-${position}px)`;
+        });
+
+        // თუ ფანჯარა შეიცვალა ზომაში
+        window.addEventListener("resize", () => {
+            position = 0;
+            slider.style.transform = "translateX(0)";
+        });
+    </script>
+
 </head>
 <body>
 
@@ -65,8 +105,13 @@
             <li class="menu-item"><a href="#">WOMEN</a></li>
             <li class="menu-item"><a href="#">KIDS</a></li>
             <li class="menu-item"><a href="#">SALE</a></li>
+
+            
         </ul>
-        </nav>
+    </nav>
+    <div class="burger">
+        <i class="fa-solid fa-bars"></i>
+    </div>
 
         <div class="right-side">
             <div class="search-box">
@@ -95,8 +140,320 @@
 
 
     <main>
-        <p>hello</p>
+    <section class="hero">
+        <div class="hero-content">
+            <h5>HOLIDAY ORIGINALS</h5>
+            <p>Give head-to-toe style with everything from matching</p>
+            <p class="p-sneakers">sets to classic sneakers.</p>
+
+            <div class="hero-buttons">
+            <a href="#">MEN →</a>
+            <a href="#">WOMEN →</a>
+            <a href="#">KIDS →</a>
+            </div>
+        </div>
+    </section>
+
     </main>
+
+
+    <section class="cards-section">
+  <button class="arrow left" id="prev">&#10094;</button>
+
+  <div class="cards-wrapper" id="slider">
+    <!-- CARD 1 -->
+    <div class="card">
+      <img src="./images/ncaa_fw25_selectionsunday_tcc_allteams_d_3_08fa034448.avif" alt="">
+      <h3>PLAYOFF POWERHOUSES</h3>
+      <p>Rep your team and live for the moment this college football postseason.</p>
+      <a href="#">SHOP NOW</a>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="card">
+      <img src="images/orig_fw25_spongebob_eoa_tcc_alt_04_d_c411229b9a.avif" alt="">
+      <h3>FIFA WORLD CUP 26™ HOME JERSEYS</h3>
+      <p>Inspired by national emblems and culture.</p>
+      <a href="#">SHOP NOW</a>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="card">
+      <img src="images/orig_ss26_adistar_control_5_tcc_d_7bb0690f3f.avif" alt="">
+      <h3>HARDEN VOL 10</h3>
+      <p>Become a walking contradiction.</p>
+      <a href="#">SHOP NOW</a>
+    </div>
+
+    <!-- CARD 4 -->
+    <div class="card">
+      <img src="images/ss26_nam_wc_home_jerseys_mexico_lifestyle_tcc_d_69c75edf4e.avif" alt="">
+      <h3>ADISTAR CONTROL 5</h3>
+      <p>Running tech heritage recut for the modern era of streetwear—an Original recoded.</p>
+      <a href="#">SHOP NOW</a>
+
+
+    </div>
+
+    <!-- CARD 5 -->
+    <div class="card">
+      <img src="images/global_HARDEN_10_originals_fw25_launch_banner_teaser_card_mobile_5d86b0a35b.avif" alt="">
+      <h3>NEW SEASON DROPS</h3>
+      <p>Fresh styles designed for everyday performance.</p>
+      <a href="#">SHOP NOW</a>
+    </div>
+  </div>
+
+  <button class="arrow right" id="next">&#10095;</button>
+</section>
+
+<section class="prime-card">
+  <img src="./images/download.avif" alt="" class="prime-image">
+
+  <div class="prime-content">
+    <p class="prime-text">
+      LAST MINUTE GIFTS? GET PRIME DELIVERY ON ELIGIBLE ITEMS.
+    </p>
+
+    <button class="prime-btn">
+      SHOP NOW <span>→</span>
+    </button>
+  </div>
+</section>
+
+<section class="popular">
+
+
+
+  <h2 class="popular-title">Popular right now</h2>
+
+  <div class="popular-grid">
+    <div class="popular-col">
+      <div class="popular-item">ultraboost</div>
+      <div class="popular-item">gazelle</div>
+    </div>
+
+    <div class="popular-col">
+      <div class="popular-item">samba</div>
+      <div class="popular-item">spezial</div>
+    </div>
+
+    <div class="popular-col">
+      <div class="popular-item">campus</div>
+      <div class="popular-item">adizero</div>
+    </div>
+  </div>
+</section>
+
+
+<section class="info-section">
+
+  <!-- TOP CARDS -->
+  <div class="info-cards">
+    <div class="info-card">
+      <img src="./images/1.avif" alt="" class="info-img"> 
+      <h3>How To Clean Shoes</h3>
+      <p>Get down and dirty with adidas and learn how to clean your sneakers the right way.</p>
+    </div>
+
+    <div class="info-card">
+      <img src="./images/2.avif" alt="" class="info-img"> 
+      <h3>The adidas Samba Size Guide</h3>
+      <p>Check out our official adidas Samba size chart to find your perfect fit.</p>
+    </div>
+
+    <div class="info-card">
+      <img src="./images/3.avif" alt="" class="info-img">
+      <h3>Ace the Looks: How to Style a Tennis Skirt</h3>
+      <p>Learn how to style your tennis skirt outfits with adidas.</p>
+    </div>
+
+    <div class="info-card">
+      <img src="images/edi_fw25_sambasizeguide_bnr_d_3_4126acc079.avif" alt="" class="info-img">
+      <h3>How To Style A Soccer Jersey</h3>
+      <p>Get inspired on how to style a jersey in totally unique ways.</p>
+    </div>
+  </div>
+
+  <!-- BOTTOM LINKS -->
+  <div class="info-links">
+    <div class="info-col">
+      <h4>SEASONAL ESSENTIALS</h4>
+      <a href="#">Hoodies & Sweatshirts</a>
+      <a href="#">Denim Pants</a>
+      <a href="#">Brown Shoes</a>
+      <a href="#">Track Jackets</a>
+      <a href="#">Outdoor Shoes</a>
+    </div>
+
+    <div class="info-col">
+      <h4>HOLIDAY GIFTING IDEAS</h4>
+      <a href="#">Socks</a>
+      <a href="#">Duffle Bags</a>
+      <a href="#">Loungewear</a>
+      <a href="#">Beanies</a>
+      <a href="#">Graphic Tees</a>
+    </div>
+
+    <div class="info-col">
+      <h4>WINTER WARDROBE</h4>
+      <a href="#">Winter Clothes & Shoes</a>
+      <a href="#">Winter Jackets</a>
+      <a href="#">Winter Shoes</a>
+      <a href="#">Winter Pants</a>
+      <a href="#">Winter Boots</a>
+    </div>
+
+    <div class="info-col">
+      <h4>COZY FLEECE</h4>
+      <a href="#">Fleece Clothing</a>
+      <a href="#">Fleece Pants</a>
+      <a href="#">Fleece Joggers</a>
+      <a href="#">Fleece Jackets</a>
+      <a href="#">Fleece Hoodies</a>
+    </div>
+  </div>
+
+</section>
+
+
+<section class="brand-section">
+
+  <div class="brand-content">
+    <h2>SNEAKERS, ACTIVEWEAR AND SPORTING GOODS</h2>
+
+    <div class="brand-text">
+      <p>
+        Calling all athletes. Gear up for your favorite sport with adidas sneakers and activewear for men and women.
+        From running to soccer and the gym to the trail, performance workout clothes and shoes keep you feeling your best.
+        Find sport-specific sneakers to support your passion, and shop versatile activewear and accessories that support
+        everyday comfort.
+      </p>
+
+      <p>
+        Founded on performance, adidas sporting goods equipment supports athletes at all levels. Men, women and kids
+        will find their best form in sneakers and activewear made to perform under pressure. Explore sport-specific clothes
+        and gear for basketball, soccer, or the yoga studio.
+      </p>
+    </div>
+
+    <img src="./images/image-removebg-preview (2).png" alt="" class="brand-logo"> 
+  </div>
+
+</section>
+
+<div class="club-bar">
+  <p>JOIN OUR ADICLUB & GET 15% OFF</p>
+  <button class="club-btn">SIGN UP FOR FREE →</button>
+</div>
+
+
+<footer class="footer">
+
+  <div class="footer-top">
+
+    <div class="footer-col">
+      <h4>PRODUCTS</h4>
+      <a href="#">Shoes</a>
+      <a href="#">Clothing</a>
+      <a href="#">Accessories</a>
+      <a href="#">Gift Cards</a>
+      <a href="#">New Arrivals</a>
+      <a href="#">Best Sellers</a>
+      <a href="#">Release Dates</a>
+      <a href="#">SALE</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Sports</h4>
+      <a href="#">Soccer</a>
+      <a href="#">Running</a>
+      <a href="#">Basketball</a>
+      <a href="#">Football</a>
+      <a href="#">Outdoor</a>
+      <a href="#">Golf</a>
+      <a href="#">Baseball</a>
+      <a href="#">Tennis</a>
+      <a href="#">Skateboarding</a>
+      <a href="#">Workout</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Collections</h4>
+      <a href="#">adicolor</a>
+      <a href="#">Ultraboost</a>
+      <a href="#">Forum</a>
+      <a href="#">Superstar</a>
+      <a href="#">Running Shoes</a>
+      <a href="#">adilette</a>
+      <a href="#">Stan Smith</a>
+      <a href="#">adizero</a>
+      <a href="#">Tiro</a>
+      <a href="#">Cloudfoam Pure</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>SUPPORT</h4>
+      <a href="#">Help</a>
+      <a href="#">Returns & Exchanges</a>
+      <a href="#">Shipping</a>
+      <a href="#">Order Tracker</a>
+      <a href="#">Store Locator</a>
+      <a href="#">Size Charts</a>
+      <a href="#">Gift Card Balance</a>
+      <a href="#">How to Clean Shoes</a>
+      <a href="#">Bra Fit Guide</a>
+      <a href="#">Breathing for Running</a>
+      <a href="#">Promotions</a>
+      <a href="#">Sitemap</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>COMPANY INFO</h4>
+      <a href="#">About Us</a>
+      <a href="#">Student Discount</a>
+      <a href="#">Military & Healthcare Discount</a>
+      <a href="#">adidas Stories</a>
+      <a href="#">adidas Apps</a>
+      <a href="#">Impact</a>
+      <a href="#">People</a>
+      <a href="#">Planet</a>
+      <a href="#">adiClub</a>
+      <a href="#">Affiliates</a>
+      <a href="#">Press</a>
+      <a href="#">Careers</a>
+      <a href="#">California Transparency in Supply Chains Act</a>
+      <a href="#">Responsible Disclosure</a>
+      <a href="#">Transparency in Coverage</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>FOLLOW US</h4>
+
+      <div class="social-icons">
+        <i class="fa-brands fa-facebook"></i>
+        <i class="fa-brands fa-instagram"></i>
+        <i class="fa-brands fa-x-twitter"></i>
+        <i class="fa-brands fa-tiktok"></i>
+        <i class="fa-brands fa-youtube"></i>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <a href="#">Your Privacy Choices</a>
+    <span>|</span>
+    <a href="#">Privacy Policy</a>
+    <span>|</span>
+    <a href="#">Terms and Conditions</a>
+  </div>
+
+  <p class="footer-copy">© 2025 adidas America, Inc.</p>
+
+</footer>
+
+
 </body>
 </html>
 
