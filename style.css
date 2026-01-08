@@ -665,6 +665,10 @@ main{
   }
 }
 
+.fa-heart{
+  color: black;
+  cursor: pointer;
+}
 
 .burger {
   display: none;
